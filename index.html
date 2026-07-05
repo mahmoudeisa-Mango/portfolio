@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahmoud Eisa — Case Files</title>
+<meta name="description" content="Research and analysis portfolio of Mahmoud Eisa — Business Information Systems student.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #f5f3ec;
+    --paper-card: #fffefa;
+    --ink: #17233c;
+    --ink-soft: #4b5468;
+    --ink-faint: #8892a3;
+    --rule: #dad4c3;
+    --rule-strong: #c3bca6;
+    --brass: #8f6f28;
+    --brass-light: #c9a94e;
+    --brass-wash: #f1e9d2;
+    --max: 880px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--paper);
+    background-image:
+      linear-gradient(var(--rule) 1px, transparent 1px);
+    background-size: 100% 44px;
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection{ background: var(--brass-wash); color: var(--ink); }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- header ---------- */
+  header.site{
+    padding: 40px 0 22px;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  header.site .wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+  }
+  .brand{
+    font-family: "Newsreader", serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .brand span{
+    color: var(--brass);
+    font-style: italic;
+    font-weight: 400;
+  }
+  nav.site-nav{
+    display: flex;
+    gap: 22px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  nav.site-nav a{ text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 3px; transition: border-color .15s ease, color .15s ease; }
+  nav.site-nav a:hover{ color: var(--brass); border-color: var(--brass); }
+
+  /* ---------- hero ---------- */
+  .hero{ padding: 64px 0 56px; }
+  .hero .eyebrow{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin: 0 0 18px;
+  }
+  .hero .eyebrow::before{ content: "◆ "; }
+  .hero h1{
+    font-family: "Newsreader", serif;
+    font-weight: 500;
+    font-size: clamp(34px, 5vw, 50px);
+    line-height: 1.14;
+    margin: 0 0 22px;
+    max-width: 11.5em;
+  }
+  .hero h1 em{
+    font-style: italic;
+    color: var(--brass);
+  }
+  .hero p.lede{
+    max-width: 56ch;
+    color: var(--ink-soft);
+    font-size: 17px;
+    margin: 0 0 34px;
+  }
+
+  .stat-strip{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--rule-strong);
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .stat-strip .stat{
+    padding: 16px 18px 16px 0;
+    border-right: 1px solid var(--rule);
+  }
+  .stat-strip .stat:last-child{ border-right: none; padding-right: 0; }
+  .stat .num{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    display: block;
+  }
+  .stat .num small{ font-size: 12px; color: var(--brass); font-weight: 500; }
+  .stat .label{
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ---------- section heads ---------- */
+  .section-head{
+    padding: 58px 0 26px;
+  }
+  .section-head .index{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.1em;
+  }
+  .section-head h2{
+    font-family: "Newsreader", serif;
+    font-weight: 500;
+    font-size: 28px;
+    margin: 6px 0 8px;
+  }
+  .section-head p{
+    color: var(--ink-soft);
+    max-width: 58ch;
+    margin: 0;
+    font-size: 15px;
+  }
+
+  /* ---------- case files ---------- */
+  .casefile{
+    position: relative;
+    background: var(--paper-card);
+    border: 1px solid var(--rule-strong);
+    box-shadow: 0 1px 0 var(--rule);
+    margin-bottom: 30px;
+    padding: 34px 32px 30px;
+  }
+  .casefile .tab{
+    position: absolute;
+    top: -1px;
+    left: 32px;
+    background: var(--ink);
+    color: var(--paper-card);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    padding: 5px 12px 6px;
+    transform: translateY(-100%);
+  }
+  .casefile .stamp{
+    position: absolute;
+    top: 28px;
+    right: 30px;
+    border: 2px solid var(--brass-light);
+    color: var(--brass);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 9px;
+    border-radius: 3px;
+    transform: rotate(4deg);
+    opacity: 0.85;
+  }
+  .casefile .meta{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.03em;
+    margin: 0 0 10px;
+  }
+  .casefile h3{
+    font-family: "Newsreader", serif;
+    font-weight: 600;
+    font-size: 23px;
+    margin: 0 0 14px;
+    max-width: 20em;
+    padding-right: 90px;
+  }
+  .casefile p.body-text{
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin: 0 0 20px;
+    font-size: 15px;
+  }
+
+  .chip-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .chip{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    background: var(--brass-wash);
+    border: 1px solid var(--rule-strong);
+    padding: 6px 10px;
+    border-radius: 3px;
+    color: var(--ink);
+  }
+  .chip b{ color: var(--brass); }
+
+  .finding{
+    border-left: 3px solid var(--brass-light);
+    padding: 4px 0 4px 16px;
+    margin: 0 0 22px;
+    font-family: "Newsreader", serif;
+    font-style: italic;
+    font-size: 15.5px;
+    color: var(--ink);
+    max-width: 60ch;
+  }
+
+  .casefile .actions{
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn-download{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: var(--paper-card);
+    background: var(--ink);
+    padding: 10px 16px;
+    border-radius: 3px;
+    transition: background .15s ease;
+  }
+  .btn-download:hover{ background: var(--brass); }
+  .btn-download svg{ width: 13px; height: 13px; }
+
+  .file-note{
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- upcoming / software ---------- */
+  .upcoming{
+    border: 1px dashed var(--rule-strong);
+    padding: 26px 28px;
+    margin-bottom: 10px;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+  }
+  .upcoming .index{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.08em;
+  }
+  .upcoming ul{
+    margin: 12px 0 0;
+    padding-left: 18px;
+  }
+  .upcoming li{ margin-bottom: 4px; }
+
+  /* ---------- toolkit ---------- */
+  .toolkit-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+  .toolkit-card{
+    border: 1px solid var(--rule-strong);
+    background: var(--paper-card);
+    padding: 16px 16px;
+  }
+  .toolkit-card .k{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .toolkit-card .v{ font-size: 13.5px; color: var(--ink-soft); }
+  .toolkit-placeholder{
+    border: 1px dashed var(--rule-strong);
+    padding: 18px 20px;
+    font-size: 13.5px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  /* ---------- footer ---------- */
+  footer.site{
+    margin-top: 70px;
+    border-top: 1px solid var(--rule-strong);
+    padding: 32px 0 60px;
+  }
+  footer.site .row{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: baseline;
+  }
+  footer.site .name{
+    font-family: "Newsreader", serif;
+    font-size: 17px;
+  }
+  footer.site .links{
+    display: flex;
+    gap: 18px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+  }
+  footer.site .links a{ text-decoration: none; border-bottom: 1px solid var(--rule-strong); }
+  footer.site .links a:hover{ color: var(--brass); border-color: var(--brass); }
+  footer.site .fine{
+    margin-top: 18px;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 640px){
+    .stat-strip{ grid-template-columns: repeat(2, 1fr); }
+    .stat-strip .stat:nth-child(2n){ border-right: none; }
+    .stat-strip .stat{ padding-bottom: 14px; }
+    .casefile .stamp{ position: static; display: inline-block; transform: none; margin-bottom: 12px; }
+    .casefile h3{ padding-right: 0; }
+    nav.site-nav{ gap: 14px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">Mahmoud Eisa <span>— case files</span></div>
+    <nav class="site-nav">
+      <a href="#research">Research</a>
+      <a href="#software">Software</a>
+      <a href="#toolkit">Toolkit</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Business Information Systems · AASTMT</p>
+    <h1>I get handed a spreadsheet, a survey, or a set of financial statements — and I come back with <em>the story inside the numbers.</em></h1>
+    <p class="lede">A working archive of analysis: financial ratio work on a real, publicly listed company, and a full quantitative research study on student satisfaction, from questionnaire design through statistical testing.</p>
+
+    <div class="stat-strip">
+      <div class="stat">
+        <span class="num">1.27 <small>→</small> 1.37</span>
+        <span class="label">Current ratio, TMG '23–'24</span>
+      </div>
+      <div class="stat">
+        <span class="num">10.85<small>%</small></span>
+        <span class="label">TMG sustainable growth rate</span>
+      </div>
+      <div class="stat">
+        <span class="num">76</span>
+        <span class="label">Survey respondents, AASTMT study</span>
+      </div>
+      <div class="stat">
+        <span class="num">0.896</span>
+        <span class="label">Cronbach's α, top-scoring variable</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="index">01 — 02</div>
+      <h2>Research &amp; analysis case files</h2>
+      <p>Two full write-ups, condensed here to the findings that matter. Full reports are one click away as PDFs.</p>
+    </div>
+
+    <!-- Case File 01 -->
+    <article class="casefile">
+      <div class="tab">FILE NO. 01</div>
+      <div class="stamp">Analyzed</div>
+      <p class="meta">Financial Management · Ratio &amp; DuPont Analysis · FY2023–2024</p>
+      <h3>Reading Talaat Moustafa Group's balance sheet like a lender would</h3>
+      <p class="body-text">Pulled two fiscal years of financial statements from TMG — one of Egypt's largest listed real-estate developers — and worked through liquidity, solvency, profitability, market-value, and growth ratios to answer one question: is the balance sheet actually strong enough to support the growth it's chasing?</p>
+
+      <div class="chip-row">
+        <span class="chip"><b>Total debt ratio</b> 0.81 → 0.63</span>
+        <span class="chip"><b>ROE</b> 8.6% → 11.0%</span>
+        <span class="chip"><b>Net working capital '24</b> LE 62.8B</span>
+        <span class="chip"><b>Internal growth rate '24</b> 3.74%</span>
+      </div>
+
+      <p class="finding">"TMG's 2024 sustainable growth rate of 10.85% runs well ahead of its 3.74% internal growth rate — the expansion is being carried by leverage and customer prepayments, not retained profit alone."</p>
+
+      <div class="actions">
+        <a class="btn-download" href="reports/tmg-financial-ratio-analysis.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+          Download full analysis (PDF)
+        </a>
+        <span class="file-note">12-part ratio breakdown with year-over-year commentary</span>
+      </div>
+    </article>
+
+    <!-- Case File 02 -->
+    <article class="casefile">
+      <div class="tab">FILE NO. 02</div>
+      <div class="stamp">Fieldwork</div>
+      <p class="meta">Research Methods · MGT222E · Quantitative Survey Study</p>
+      <h3>What actually drives student satisfaction at AASTMT</h3>
+      <p class="body-text">Co-designed and ran a correlational study across AASTMT's branches to isolate what really moves the needle on student satisfaction: expectations, academic services, campus infrastructure, and word-of-mouth recommendations. Built the questionnaire, collected responses, then tested reliability and correlation before writing up the findings.</p>
+
+      <div class="chip-row">
+        <span class="chip"><b>Design</b> Cross-sectional, correlational</span>
+        <span class="chip"><b>Sample</b> 76 respondents, multi-branch</span>
+        <span class="chip"><b>Scale</b> 5-point Likert</span>
+        <span class="chip"><b>Variables tested</b> 4</span>
+      </div>
+
+      <p class="finding">"Campus infrastructure came back with the strongest reliability of any variable in the study (α = 0.896) — the most consistently-felt driver of satisfaction across a genuinely mixed sample of local and international students."</p>
+
+      <div class="actions">
+        <a class="btn-download" href="reports/aastmt-student-satisfaction-study.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+          Download full research paper (PDF)
+        </a>
+        <span class="file-note">Literature review, methodology, SPSS-style output, and recommendations</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="software">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="index">03</div>
+      <h2>Software projects</h2>
+      <p>Development work in progress — repos and write-ups to be added here next.</p>
+    </div>
+    <div class="upcoming">
+      <div class="index">FILE NO. 03 — PENDING</div>
+      <p style="margin: 10px 0 0;">Candidates on deck: a furniture e-commerce app (MariaDB backend), an immigration &amp; nationality admin platform (8-entity MySQL schema), DAFA Room Studio (React room customizer), and a Windows 12 concept UI. Each will get its own case file with a repo link, screenshots, and a short build breakdown once finalized.</p>
+    </div>
+  </div>
+</section>
+
+<section id="toolkit">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="index">04</div>
+      <h2>Toolkit</h2>
+      <p>The tools behind the two case files above.</p>
+    </div>
+    <div class="toolkit-grid">
+      <div class="toolkit-card"><span class="k">Analysis</span><span class="v">Financial ratio modeling, DuPont decomposition, growth-rate forecasting</span></div>
+      <div class="toolkit-card"><span class="k">Research</span><span class="v">Survey design, reliability testing (Cronbach's α), correlation analysis</span></div>
+      <div class="toolkit-card"><span class="k">Data</span><span class="v">Excel, SQL / MySQL</span></div>
+    </div>
+    <div class="toolkit-placeholder">More to add here — languages, frameworks, certifications? Tell me what to list and I'll fill this section in.</div>
+  </div>
+</section>
+
+<footer class="site" id="contact">
+  <div class="wrap">
+    <div class="row">
+      <div class="name">Mahmoud Eisa</div>
+      <div class="links">
+        <a href="https://github.com/mahmoudeisa-Mango" target="_blank" rel="noopener">GitHub</a>
+        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:you@example.com">Email</a>
+      </div>
+    </div>
+    <p class="fine">Placeholder contact links — send me your LinkedIn URL and email and I'll wire these up.</p>
+  </div>
+</footer>
+
+</body>
+</html>
