@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahmoud Eisa — Analytical Field Notes</title>
+<meta name="description" content="Business Information Systems portfolio — financial ratio analysis, survey research, and e-commerce analytics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  /* ============ TOKENS ============ */
+  :root{
+    --paper: #FAF8F3;
+    --paper-dim: #F1EEE5;
+    --ink: #191713;
+    --ink-soft: #55504a;
+    --rule: #d9d2c4;
+    --blue: #1E3A5F;      /* ledger blue — leverage / structure */
+    --ochre: #D68A2C;     /* data-pop accent */
+    --sage: #5C6E4E;      /* tertiary tag color */
+    --rust: #9c3b2e;      /* alert / pull-quote rule */
+    --paper-card: #ffffff;
+    --shadow: 0 1px 0 rgba(25,23,19,0.06);
+    --max: 1080px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--ochre);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ============ MASTHEAD ============ */
+  .masthead{
+    border-bottom:3px solid var(--ink);
+    padding:26px 0 16px;
+  }
+  .masthead .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .wordmark{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:clamp(34px, 5vw, 52px);
+    letter-spacing:-0.02em;
+    line-height:0.95;
+  }
+  .masthead-meta{
+    text-align:right;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .masthead-meta .vol{ color:var(--blue); font-weight:600; }
+
+  .subline{
+    padding:10px 0 4px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .tagline{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  nav.toc-nav{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.04em;
+  }
+  nav.toc-nav a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  nav.toc-nav a:hover{ color:var(--ink); border-color:var(--ochre); }
+
+  /* ============ HERO ============ */
+  .hero{
+    padding:64px 0 48px;
+    border-bottom:1px solid var(--rule);
+  }
+  .hero h1{
+    font-size:clamp(32px, 5.6vw, 56px);
+    line-height:1.04;
+    max-width:15ch;
+  }
+  .hero-lead{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+  @media(min-width:780px){
+    .hero-lead{ grid-template-columns: 1.3fr 1fr; }
+  }
+  .lead-copy{
+    font-size:19px;
+    color:var(--ink-soft);
+  }
+  .lead-copy::first-letter{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:64px;
+    float:left;
+    line-height:0.8;
+    padding-right:10px;
+    padding-top:6px;
+    color:var(--blue);
+  }
+
+  /* Contents block, styled like a magazine TOC */
+  .contents{
+    background:var(--paper-card);
+    border:1px solid var(--rule);
+    padding:22px 24px;
+  }
+  .contents .eyebrow{ color:var(--rust); display:block; margin-bottom:14px; }
+  .contents ol{ list-style:none; margin:0; padding:0; }
+  .contents li{
+    display:flex;
+    gap:14px;
+    align-items:baseline;
+    padding:11px 0;
+    border-top:1px solid var(--rule);
+  }
+  .contents li:first-child{ border-top:none; }
+  .contents .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--blue);
+    flex:0 0 auto;
+  }
+  .contents a{
+    text-decoration:none;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:17px;
+  }
+  .contents a:hover{ color:var(--blue); }
+  .contents .kicker-mini{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    margin-top:2px;
+  }
+
+  /* ============ FEATURE / CASE FILE ============ */
+  .feature{
+    padding:72px 0;
+    border-bottom:1px solid var(--rule);
+  }
+  .feature:nth-of-type(even){ background:var(--paper-dim); }
+
+  .feature .eyebrow{ color:var(--rust); }
+  .feature h2{
+    font-size:clamp(30px, 4.6vw, 46px);
+    margin-top:10px;
+    max-width:18ch;
+    line-height:1.05;
+  }
+  .feature .subtitle{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:19px;
+    color:var(--ink-soft);
+    margin-top:10px;
+  }
+  .byline{
+    margin-top:16px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    padding-bottom:20px;
+    border-bottom:1px solid var(--rule);
+  }
+
+  .feature-body{
+    margin-top:32px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:36px;
+  }
+  @media(min-width:820px){
+    .feature-body{ grid-template-columns: 1fr 300px; }
+  }
+
+  .feature-copy p{ margin:0 0 18px; }
+  .feature-copy p:first-of-type::first-letter{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:58px;
+    float:left;
+    line-height:0.75;
+    padding-right:9px;
+    padding-top:5px;
+    color:var(--blue);
+  }
+  .feature-copy h4{
+    font-size:15px;
+    margin-top:30px;
+    margin-bottom:10px;
+    font-weight:700;
+  }
+
+  /* stat rail (sidebar) */
+  .stat-rail{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .stat-rail .stat{
+    padding:18px 0;
+    border-top:1px solid var(--rule);
+  }
+  .stat-rail .stat:first-child{ border-top:none; }
+  .stat-num{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:32px;
+    color:var(--blue);
+    line-height:1.05;
+  }
+  .stat-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    margin-top:4px;
+  }
+
+  /* pull quote — the signature element */
+  .pull-quote{
+    margin:34px 0;
+    padding-left:26px;
+    border-left:4px solid var(--rust);
+  }
+  .pull-quote p{
+    margin:0;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(21px, 2.6vw, 28px);
+    line-height:1.3;
+    color:var(--ink);
+  }
+
+  .findings-list{
+    margin:20px 0;
+    padding:0;
+    list-style:none;
+  }
+  .findings-list li{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:16px;
+    padding:12px 0;
+    border-top:1px solid var(--rule);
+    align-items:baseline;
+  }
+  .findings-list li:first-child{ border-top:none; }
+  .findings-list .r{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    color:var(--blue);
+    font-size:15px;
+  }
+
+  .figure{
+    margin:30px 0;
+    border:1px solid var(--rule);
+    background:#111;
+  }
+  .figure img{ width:100%; }
+  .figure figcaption{
+    background:var(--paper-card);
+    border-top:1px solid var(--rule);
+    padding:10px 14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+
+  .btn-row{
+    margin-top:26px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 18px;
+    text-decoration:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.02em;
+    border:1.5px solid var(--ink);
+    color:var(--ink);
+    transition:background .15s ease, color .15s ease;
+  }
+  .btn:hover{ background:var(--ink); color:var(--paper); }
+  .btn.primary{ background:var(--blue); border-color:var(--blue); color:#fff; }
+  .btn.primary:hover{ background:var(--ink); border-color:var(--ink); }
+
+  .so-what{
+    margin-top:30px;
+    padding:18px 20px;
+    background:var(--paper-card);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--ochre);
+  }
+  .so-what .eyebrow{ color:var(--ochre); }
+  .so-what p{ margin:8px 0 0; }
+
+  /* ============ TOOLKIT ============ */
+  .toolkit{ padding:60px 0; border-bottom:1px solid var(--rule); }
+  .toolkit h2{ font-size:28px; }
+  .chip-row{
+    margin-top:24px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    padding:9px 16px;
+    background:var(--paper-card);
+    border:1px solid var(--rule);
+  }
+  .chip.primary-tool{ border-color:var(--blue); color:var(--blue); font-weight:600; }
+
+  /* ============ NEXT ISSUE / SOFTWARE PLACEHOLDER ============ */
+  .next-issue{ padding:60px 0; border-bottom:1px solid var(--rule); background:var(--paper-dim); }
+  .next-issue .eyebrow{ color:var(--sage); }
+  .next-issue h2{ font-size:28px; margin-top:8px; }
+  .teaser-grid{
+    margin-top:28px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    gap:1px;
+    background:var(--rule);
+    border:1px solid var(--rule);
+  }
+  .teaser{
+    background:var(--paper);
+    padding:22px 20px;
+  }
+  .teaser .eyebrow{ color:var(--ink-soft); font-size:11px; }
+  .teaser h3{
+    font-size:19px;
+    margin-top:8px;
+    font-weight:600;
+  }
+  .teaser p{
+    margin:8px 0 0;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+
+  /* ============ FOOTER / COLOPHON ============ */
+  footer{ padding:56px 0 60px; }
+  .colophon{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:36px;
+  }
+  @media(min-width:700px){
+    .colophon{ grid-template-columns: 1.2fr 1fr; }
+  }
+  footer h2{ font-size:26px; }
+  footer .lead-copy{ margin-top:14px; color:var(--ink-soft); }
+  .contact-list{
+    margin-top:20px;
+    list-style:none;
+    padding:0;
+  }
+  .contact-list li{ padding:9px 0; border-top:1px solid var(--rule); }
+  .contact-list li:first-child{ border-top:none; }
+  .contact-list a{
+    text-decoration:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14.5px;
+  }
+  .contact-list a:hover{ color:var(--blue); }
+  .contact-list .k{
+    display:inline-block;
+    width:82px;
+    color:var(--ink-soft);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+  .imprint{
+    margin-top:40px;
+    padding-top:20px;
+    border-top:1px solid var(--rule);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="wordmark">Mahmoud Eisa</div>
+    <div class="masthead-meta">
+      Business Information Systems<br>
+      Arab Academy for Science, Technology &amp; Maritime Transport<br>
+      <span class="vol">Vol. 01 — Analytical Field Notes</span>
+    </div>
+  </div>
+  <div class="wrap subline">
+    <span class="tagline">Three studies in data, decisions, and the gap between them</span>
+    <nav class="toc-nav">
+      <a href="#tmg">01 Finance</a>
+      <a href="#aastmt">02 Research</a>
+      <a href="#olist">03 Analytics</a>
+      <a href="#toolkit">Toolkit</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Reading the numbers before they're asked.</h1>
+    <div class="hero-lead">
+      <p class="lead-copy">Three studies, three different data problems — a property group's consolidated statements, seventy-six student surveys, and ninety-nine thousand e-commerce orders. Each one starts the same way: pull the raw numbers apart until they say something a decision-maker can actually use, then check that the story survives contact with the data.</p>
+      <div class="contents">
+        <span class="eyebrow">In this issue</span>
+        <ol>
+          <li>
+            <span class="num">01</span>
+            <div>
+              <a href="#tmg">A Balance Sheet in Motion</a>
+              <span class="kicker-mini">TMG financial ratio analysis</span>
+            </div>
+          </li>
+          <li>
+            <span class="num">02</span>
+            <div>
+              <a href="#aastmt">What Makes a Student Stay Satisfied</a>
+              <span class="kicker-mini">AASTMT survey research</span>
+            </div>
+          </li>
+          <li>
+            <span class="num">03</span>
+            <div>
+              <a href="#olist">Twelve and a Half Days</a>
+              <span class="kicker-mini">E-commerce delivery analytics</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURE 01 — TMG ============ -->
+<section class="feature" id="tmg">
+  <div class="wrap">
+    <span class="eyebrow">Feature 01 · Corporate Finance</span>
+    <h2>A Balance Sheet in Motion</h2>
+    <p class="subtitle">Two fiscal years inside Talaat Moustafa Group's consolidated statements</p>
+    <div class="byline">With Abdalla Adil Abdalla Mohamedali · Financial Management · Submitted to Dr. Heba Farid</div>
+
+    <div class="feature-body">
+      <div class="feature-copy">
+        <p>Talaat Moustafa Group is one of Egypt's largest real-estate developers, and its consolidated statements read like most capital-intensive developers' do: heavy assets, long project cycles, and a financing model built on customer prepayments rather than bank debt. This project runs the full ratio toolkit — liquidity, leverage, efficiency, profitability, and market value — across two fiscal years to find out whether that model was getting stronger or weaker.</p>
+        <p>It was getting stronger. TMG's current and quick ratios stayed comfortably above 1 across both years, meaning the group could cover its short-term obligations without touching inventory. What moved was efficiency: receivables collection sped up and inventory turned over faster, which fed directly into a profit margin that nearly tripled — from 11.8% to 33.9% of revenue.</p>
+
+        <div class="pull-quote">
+          <p>"The company grows by collecting from its buyers early — not by borrowing from its banks."</p>
+        </div>
+
+        <p>Total assets grew from roughly EGP 202 billion to EGP 357 billion, and equity nearly tripled from EGP 39 billion to EGP 131 billion over the same period. Return on assets doubled and return on equity climbed from 8.6% to 11%. The market noticed: TMG's share price moved from EGP 24 to EGP 74.70, while its price-to-earnings ratio held roughly steady near 16× — evidence that investors were pricing in real earnings growth, not speculation.</p>
+
+        <h4>Method</h4>
+        <p>Ratios were built directly from TMG's published consolidated financial statements (FY2023–FY2024): short-term liquidity (current, quick, cash ratios, net working capital), long-term solvency (debt ratio, equity ratio, debt-to-equity, times interest earned, cash coverage), asset management (inventory and receivables turnover, total asset turnover), profitability (margin, ROA, ROE, DuPont decomposition), and market value (P/E, price-to-sales, price-to-book) — plus internal and sustainable growth rate modeling to estimate how fast TMG can expand using only its own retained earnings.</p>
+
+        <div class="so-what">
+          <span class="eyebrow">So what</span>
+          <p>This is the full ratio-analysis toolkit applied to a real, messy, multi-billion-pound balance sheet — not a textbook example. It demonstrates reading financial statements for a story, not just plugging numbers into formulas.</p>
+        </div>
+
+        <div class="btn-row">
+          <a class="btn primary" href="reports/tmg-financial-ratio-analysis.pdf">Download the full report (PDF)</a>
+        </div>
+      </div>
+
+      <aside class="stat-rail">
+        <div class="stat">
+          <div class="stat-num">EGP 202B → 357B</div>
+          <div class="stat-label">Total assets, FY23 → FY24</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">11.8% → 33.9%</div>
+          <div class="stat-label">Profit margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">EGP 39B → 131B</div>
+          <div class="stat-label">Shareholder equity</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">EGP 24 → 74.70</div>
+          <div class="stat-label">Share price, ~16× P/E held steady</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURE 02 — AASTMT ============ -->
+<section class="feature" id="aastmt">
+  <div class="wrap">
+    <span class="eyebrow">Feature 02 · Survey Research</span>
+    <h2>What Makes a Student Stay Satisfied</h2>
+    <p class="subtitle">A 76-respondent correlational study across AASTMT's campuses</p>
+    <div class="byline">With Shmook Amar &amp; Ahmed Khaled · MGT222E · Quantitative Research Methods</div>
+
+    <div class="feature-body">
+      <div class="feature-copy">
+        <p>Student satisfaction is the KPI every university claims to optimize for, but the literature disagrees on what actually drives it. This study tests four candidate variables — student expectations, academic services, campus infrastructure, and previous recommendations — against overall satisfaction, using a cross-sectional online survey of 76 students across AASTMT's branches, coded on a 5-point Likert scale and validated with Cronbach's alpha.</p>
+        <p>Every scale cleared the reliability bar, with campus infrastructure scoring highest (α = .896) — students were remarkably consistent in how they judged classrooms, facilities, and study spaces. That consistency showed up again in the correlation analysis.</p>
+
+        <div class="pull-quote">
+          <p>"The one variable everyone expects to be secondary — the buildings — turned out to predict satisfaction the most."</p>
+        </div>
+
+        <p>All four predictors correlated positively with satisfaction, but not equally:</p>
+
+        <ul class="findings-list">
+          <li><span class="r">r = .743</span><span>Campus infrastructure — the strongest relationship in the study</span></li>
+          <li><span class="r">r = .606</span><span>Student expectations — meeting or exceeding the benchmark students arrive with</span></li>
+          <li><span class="r">r = .573</span><span>Academic services — perceived quality of teaching and administration</span></li>
+          <li><span class="r">r = .548</span><span>Previous recommendations — word-of-mouth from family and friends</span></li>
+        </ul>
+
+        <h4>Method</h4>
+        <p>Correlational, cross-sectional design; minimal researcher interference; data collected once via Google Forms and distributed across AASTMT branches to capture both local and international students (59.7% international, 56.6% female, 67.1% aged 20–30). Each construct was tested for internal consistency before running Pearson correlations against total satisfaction.</p>
+
+        <h4>Limitations</h4>
+        <p>The sample was distributed through personal networks, which risks selection bias toward similar viewpoints, and a single data-collection wave can't capture how satisfaction shifts across a student's years on campus — a longitudinal follow-up is the natural next step.</p>
+
+        <div class="so-what">
+          <span class="eyebrow">So what</span>
+          <p>End-to-end quantitative research: literature review into testable hypotheses, survey design, reliability testing, correlation analysis, and an honest read of what the sample can and can't support.</p>
+        </div>
+
+        <div class="btn-row">
+          <a class="btn primary" href="reports/aastmt-student-satisfaction-study.pdf">Download the full paper (PDF)</a>
+        </div>
+      </div>
+
+      <aside class="stat-rail">
+        <div class="stat">
+          <div class="stat-num">76</div>
+          <div class="stat-label">Respondents, multiple AASTMT campuses</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">α = .896</div>
+          <div class="stat-label">Infrastructure scale reliability — highest of all five</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">r = .743</div>
+          <div class="stat-label">Strongest predictor of satisfaction</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">59.7%</div>
+          <div class="stat-label">International students in the sample</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURE 03 — OLIST ============ -->
+<section class="feature" id="olist">
+  <div class="wrap">
+    <span class="eyebrow">Feature 03 · E-Commerce Analytics</span>
+    <h2>Twelve and a Half Days</h2>
+    <p class="subtitle">Delivery performance and early-warning risk across 99,441 Brazilian orders</p>
+    <div class="byline">SQL Server · Python · Power BI · Logistic Regression</div>
+
+    <div class="feature-body">
+      <div class="feature-copy">
+        <p>Olist's public Brazilian e-commerce dataset is nine loosely-related tables of orders, payments, products, and reviews. The first job was structural: build a proper star schema in SQL Server — fact tables for orders and order items, dimension views for customers, products, and sellers — with delivery-lag and lateness calculations computed once, centrally, instead of re-derived in every query downstream.</p>
+        <p>With clean views in place, the analysis moved into Python for exploratory work. Delivery lag averages 12.5 days but is heavily right-skewed: about 5.2% of orders (5,025) take longer than 28.5 days, and those outliers aren't spread evenly across the country.</p>
+
+        <div class="pull-quote">
+          <p>"The worst delays aren't everywhere — they're concentrated in five states, mostly Brazil's remote North."</p>
+        </div>
+
+        <p>Roraima, Amapá, Amazonas, Alagoas, and Pará post average lags between 23 and 29 days — nearly double the national figure. Delivery lag also correlates negatively with review score (r = −0.33): not the only driver of a bad review, but a meaningful one. From there, a logistic regression model was trained on information available <em>before</em> a package ships — payment value, freight cost, order size, customer state — and it correctly flags 51% of orders that go on to arrive late.</p>
+
+        <h4>Being honest about the model</h4>
+        <p>That 51% catch rate comes with a real trade-off: roughly 9 in 10 orders flagged as "risky" still arrive on time. It's a triage tool for cheap interventions — a courier nudge, a proactive customer update — not a certainty engine, and the write-up says so plainly rather than overselling the number.</p>
+
+        <div class="figure">
+          <img src="assets/olist-dashboard.png" alt="Power BI dashboard showing total revenue by date, average delivery lag by customer state on a map, and total revenue by product category" loading="lazy">
+          <figcaption>Power BI dashboard — revenue trend, delivery lag by state, and category performance in one view</figcaption>
+        </div>
+
+        <div class="so-what">
+          <span class="eyebrow">So what</span>
+          <p>A full pipeline in one project: a normalized SQL data model, exploratory analysis and predictive modeling in Python, and a Power BI dashboard built for a manager to actually check on a Monday — not just a notebook that ends at a chart.</p>
+        </div>
+
+        <div class="btn-row">
+          <a class="btn primary" href="reports/olist-executive-summary.pdf">Download executive summary (PDF)</a>
+          <a class="btn" href="reports/olist-dashboard.pbix">Download Power BI file (.pbix)</a>
+          <a class="btn" href="reports/olist-sql-data-model.sql">View SQL data model</a>
+        </div>
+      </div>
+
+      <aside class="stat-rail">
+        <div class="stat">
+          <div class="stat-num">99,441</div>
+          <div class="stat-label">Orders · R$15.84M total revenue</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">12.5 days</div>
+          <div class="stat-label">Average delivery lag</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">−0.33</div>
+          <div class="stat-label">Correlation, lag vs. review score</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">51%</div>
+          <div class="stat-label">Late orders caught before shipment</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOOLKIT ============ -->
+<section class="toolkit" id="toolkit">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--sage)">Instruments</span>
+    <h2>What these were built with</h2>
+    <div class="chip-row">
+      <span class="chip primary-tool">SQL</span>
+      <span class="chip primary-tool">Python</span>
+      <span class="chip primary-tool">Power BI</span>
+      <span class="chip primary-tool">Excel</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEXT ISSUE ============ -->
+<section class="next-issue">
+  <div class="wrap">
+    <span class="eyebrow">Next issue</span>
+    <h2>In production</h2>
+    <div class="teaser-grid">
+      <div class="teaser">
+        <span class="eyebrow">Software · Web</span>
+        <h3>Furniture E-Commerce App</h3>
+        <p>Full storefront build — case file coming once the repo and screenshots are ready.</p>
+      </div>
+      <div class="teaser">
+        <span class="eyebrow">Software · React</span>
+        <h3>DAFA Room Studio</h3>
+        <p>A React-based room visualization project.</p>
+      </div>
+      <div class="teaser">
+        <span class="eyebrow">Software · Web</span>
+        <h3>Immigration Platform</h3>
+        <p>A platform concept for navigating immigration processes.</p>
+      </div>
+      <div class="teaser">
+        <span class="eyebrow">Software · UI Concept</span>
+        <h3>Windows 12 Concept UI</h3>
+        <p>An interface concept exploring what's next for Windows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER / COLOPHON ============ -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="colophon">
+      <div>
+        <h2>Get in touch</h2>
+        <p class="lead-copy">Open to internships, analyst roles, and anything else that involves turning a pile of data into a decision someone can actually act on.</p>
+        <ul class="contact-list">
+          <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/mahmoud-eisa-" target="_blank" rel="noopener">linkedin.com/in/mahmoud-eisa-</a></li>
+          <li><span class="k">Email</span><a href="mailto:mahmoudelgadir123@gmail.com">mahmoudelgadir123@gmail.com</a></li>
+          <li><span class="k">GitHub</span><a href="https://github.com/mahmoudeisa-Mango" target="_blank" rel="noopener">github.com/mahmoudeisa-Mango</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="imprint">
+      <span>Vol. 01 — Analytical Field Notes</span>
+      <span>Business Information Systems, AASTMT</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
