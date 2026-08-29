@@ -454,11 +454,12 @@
     </div>
   </div>
   <div class="wrap subline">
-    <span class="tagline">Three studies in data, decisions, and the gap between them</span>
+    <span class="tagline">Four studies in data, decisions, and the gap between them</span>
     <nav class="toc-nav">
       <a href="#tmg">01 Finance</a>
       <a href="#aastmt">02 Research</a>
       <a href="#olist">03 Analytics</a>
+      <a href="#lostfound">04 Software</a>
       <a href="#toolkit">Toolkit</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -469,7 +470,7 @@
   <div class="wrap">
     <h1>Reading the numbers before they're asked.</h1>
     <div class="hero-lead">
-      <p class="lead-copy">Three studies, three different data problems — a property group's consolidated statements, seventy-six student surveys, and ninety-nine thousand e-commerce orders. Each one starts the same way: pull the raw numbers apart until they say something a decision-maker can actually use, then check that the story survives contact with the data.</p>
+      <p class="lead-copy">Four different data problems — a property group's consolidated statements, seventy-six student surveys, ninety-nine thousand e-commerce orders, and a full-stack app built to solve an actual problem. Each one starts the same way: pull the raw material apart until it says something a decision-maker can actually use, then check that the story survives contact with reality.</p>
       <div class="contents">
         <span class="eyebrow">In this issue</span>
         <ol>
@@ -492,6 +493,13 @@
             <div>
               <a href="#olist">Twelve and a Half Days</a>
               <span class="kicker-mini">E-commerce delivery analytics</span>
+            </div>
+          </li>
+          <li>
+            <span class="num">04</span>
+            <div>
+              <a href="#lostfound">The Charger Nobody Could Find</a>
+              <span class="kicker-mini">Full-stack web app</span>
             </div>
           </li>
         </ol>
@@ -679,6 +687,135 @@
   </div>
 </section>
 
+<!-- ============ FEATURE 04 — LOST & FOUND ============ -->
+<section class="feature" id="lostfound">
+  <div class="wrap">
+    <span class="eyebrow">Feature 04 · Full-Stack Web App</span>
+    <h2>The Charger That Started It</h2>
+    <p class="subtitle">A lost &amp; found platform for AASTMT, built from one favor to a freshman</p>
+    <div class="byline">PHP · MySQL · Apache · Built and Run on Localhost</div>
+
+    <div class="feature-body">
+      <div class="feature-copy">
+        <p>My younger brother lost his charger in his first semester and asked his older, wiser, fourth-semester brother to find it. I couldn't. Not because the campus is huge, but because there was no system — just group chats, a lost-and-found box nobody checked, and word of mouth. His charger was one case; I realized there had to be dozens of others happening at the same time with no way to connect a "lost" post to a "found" one.</p>
+        <p>So I designed and built one: a proper lost-and-found platform with accounts, categories, search, and a status workflow — the kind of system that should have existed before he needed it.</p>
+
+        <h4>Data model</h4>
+        <p>Four normalized tables sit underneath the app: <code>users</code>, <code>items</code>, <code>categories</code>, and <code>messages</code>. Items belong to a category and a poster; a status field (open, resolved) tracks whether a case is still active. The <code>messages</code> table was designed to let a finder and a loser coordinate a handoff directly through the site rather than trading personal contact info in a group chat.</p>
+
+        <div class="figure">
+          <img src="assets/lost-and-found-erd.png" alt="Entity-relationship diagram showing users, items, categories, and messages tables with their relationships" loading="lazy">
+          <figcaption>Entity-relationship diagram — four tables, normalized, with clear ownership on every item and message</figcaption>
+        </div>
+
+        <div class="pull-quote">
+          <p>"I couldn't find my brother's charger. So I built the system that would have."</p>
+        </div>
+
+        <h4>Built the boring parts properly</h4>
+        <p>Passwords are hashed with PHP's <code>password_hash</code>, never stored in plain text. Every database query — from login to the multi-filter browse search — is parameterized, so user input never gets concatenated directly into SQL. Image uploads are validated server-side on both file type and size before they touch disk, and each gets a unique generated filename so two people uploading "IMG_001.jpg" can't overwrite each other. Contact details stay hidden until a visitor actually logs in, and only an item's original poster or an admin — checked against the session, not just hidden by the UI — can mark a case resolved.</p>
+
+        <div class="figure">
+          <img src="assets/lost-and-found-browse.png" alt="Browse Items page showing filterable list of lost items including a charger with photo, marked Open and Resolved" loading="lazy">
+          <figcaption>Browse page — type, category, and keyword filters run through one dynamically-built, fully parameterized query</figcaption>
+        </div>
+
+        <div class="so-what">
+          <span class="eyebrow">So what</span>
+          <p>No framework, no scaffolding — just PHP, MySQL, and Apache, with a schema designed from scratch and the standard security basics (hashed passwords, parameterized queries, validated uploads, server-side authorization) actually in place. Built because a real problem showed up in my own life, not because it was assigned.</p>
+        </div>
+
+        <div class="btn-row">
+          <a class="btn primary" href="https://github.com/mahmoudeisa-Mango/lost-and-found" target="_blank" rel="noopener">View the code on GitHub</a>
+        </div>
+      </div>
+
+      <aside class="stat-rail">
+        <div class="stat">
+          <div class="stat-num">4 tables</div>
+          <div class="stat-label">Users, items, categories, messages</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">Hashed</div>
+          <div class="stat-label">Passwords never stored in plain text</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Parameterized queries — no raw SQL concatenation</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">Gated</div>
+          <div class="stat-label">Contact info hidden until login; resolve-action checked server-side</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURE 04 — LOST & FOUND ============ -->
+<section class="feature" id="lostfound">
+  <div class="wrap">
+    <span class="eyebrow">Feature 04 · Full-Stack Web App</span>
+    <h2>The Charger Nobody Could Find</h2>
+    <p class="subtitle">A lost-and-found platform for the whole university, built from one embarrassing afternoon</p>
+    <div class="byline">PHP · MySQL · Apache · Solo build</div>
+
+    <div class="feature-body">
+      <div class="feature-copy">
+        <p>My younger brother lost his charger in his first semester and asked me — a fourth-semester student who should've known the ropes — to help him find it. I couldn't. There was no lost-and-found system at the university worth mentioning: no board, no list, no way to check if someone had turned it in. Just word of mouth and bad luck. That was embarrassing enough to make me build one properly.</p>
+        <p>The result is a full lost-and-found platform: students register an account, post a lost or found item with a photo, and browse or search what everyone else has posted, filtered by type, category, or keyword. Anyone can look; only the item's original poster or an admin can mark it resolved, which keeps the board honest as items get claimed.</p>
+
+        <div class="pull-quote">
+          <p>"Three chargers, reported lost within days of each other — proof this was never just about my brother's."</p>
+        </div>
+
+        <p>Under the hood it's a four-table relational schema — users, items, categories, and messages — designed before a line of PHP was written. Passwords are stored with PHP's <code>password_hash()</code>, never in plain text. Every database query runs through PDO prepared statements, so user input never gets concatenated directly into SQL. Image uploads are checked against a file-extension whitelist and a size cap before they ever touch the server's disk. And the "mark as resolved" action checks — server-side, not just hidden in the UI — that whoever clicked the button is either the item's original poster or an admin.</p>
+
+        <h4>Schema</h4>
+        <p>The <code>messages</code> table connects a sender to an item and its poster, laying the groundwork for in-app contact between whoever lost something and whoever found it — instead of leaking personal contact details to every visitor by default.</p>
+
+        <div class="figure">
+          <img src="assets/lostfound-browse.png" alt="Browse Items page showing a list of lost and found items including two separate charger reports" loading="lazy">
+          <figcaption>Browse page — filterable by type, category, and keyword, with per-item status</figcaption>
+        </div>
+
+        <div class="figure">
+          <img src="assets/lostfound-erd.png" alt="Entity-relationship diagram showing users, items, categories, and messages tables and their relationships" loading="lazy">
+          <figcaption>Entity-relationship diagram — designed before any code was written</figcaption>
+        </div>
+
+        <div class="so-what">
+          <span class="eyebrow">So what</span>
+          <p>A real problem, not a tutorial clone: schema design, authentication, server-side authorization, and input validation, built solo end-to-end because a charger actually went missing.</p>
+        </div>
+
+        <div class="btn-row">
+          <a class="btn primary" href="https://github.com/mahmoudeisa-Mango/lost-and-found" target="_blank" rel="noopener">View the code on GitHub</a>
+        </div>
+      </div>
+
+      <aside class="stat-rail">
+        <div class="stat">
+          <div class="stat-num">4 tables</div>
+          <div class="stat-label">Users · items · categories · messages</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">Hashed</div>
+          <div class="stat-label">Passwords via password_hash(), never plain text</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">Server-checked</div>
+          <div class="stat-label">Owner-or-admin authorization on every state change</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">Solo build</div>
+          <div class="stat-label">PHP · MySQL · Apache, no framework</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
 <!-- ============ TOOLKIT ============ -->
 <section class="toolkit" id="toolkit">
   <div class="wrap">
@@ -689,6 +826,8 @@
       <span class="chip primary-tool">Python</span>
       <span class="chip primary-tool">Power BI</span>
       <span class="chip primary-tool">Excel</span>
+      <span class="chip">PHP</span>
+      <span class="chip">MySQL</span>
     </div>
   </div>
 </section>
