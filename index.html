@@ -765,11 +765,17 @@
     <span class="eyebrow">Feature 05 · Full-Stack Web App</span>
     <h2>Warmth, By Design</h2>
     <p class="subtitle">A furniture storefront — and the session bug that taught the most</p>
-    <div class="byline">PHP · MySQL · Bootstrap · Solo build</div>
+    <div class="byline">PHP · MySQL · Bootstrap · Group Project</div>
 
     <div class="feature-body">
       <div class="feature-copy">
         <p><em>Dafa</em> (دفا) is Arabic for warmth — the idea being furniture that brings warmth into a house, not just fills it. The storefront browses by room (Living, Bedroom, Dining), pulls live product data from MySQL into a custom-styled grid, and runs a session-based cart with full signup and sign-in.</p>
+
+        <div class="figure">
+          <img src="assets/dafa-homepage.jpg" alt="Dafa furniture storefront homepage showing the hero section and room navigation" loading="lazy">
+          <figcaption>The storefront homepage — custom-built visual identity, not a default Bootstrap theme</figcaption>
+        </div>
+
         <p>The interesting part wasn't the product grid — it was what sits behind every page: a shared navigation bar with a live cart-count badge, present on every single route. Each room page originally opened its own PHP session independently before including that shared navbar, and those sessions started stepping on each other — cart counts resetting, "session already started" warnings, state that worked on one page and silently broke on the next.</p>
 
         <div class="pull-quote">
@@ -781,6 +787,11 @@
         <h4>Data model</h4>
         <p>The schema underneath is built for a real transactional flow, not just a product catalog: <code>customer</code>, <code>product</code>, <code>orders</code>, <code>order details</code>, and <code>payment</code>, with foreign keys tying order line items back to both the order and the product, and payments back to the order. It's modeled the way a real store's checkout would need it, even where the front end is still catching up to the schema.</p>
 
+        <div class="figure">
+          <img src="assets/dafa-erd.png" alt="Entity-relationship diagram showing customer, product, orders, order details, and payment tables and their relationships" loading="lazy">
+          <figcaption>Entity-relationship diagram — a real order/payment pipeline, not just a product listing</figcaption>
+        </div>
+
         <h4>Being honest about where the polish stops</h4>
         <p>Signup passwords are hashed with <code>password_hash()</code> and inserted through parameterized queries — that flow was built the safe way from the start. Not every internal page reached the same bar yet; a couple of the admin report queries still build SQL with variables dropped straight in, since they were built fast to answer one specific question rather than to survive user input. Knowing exactly which parts of a codebase are hardened and which aren't is its own kind of useful.</p>
 
@@ -790,7 +801,7 @@
         </div>
 
         <div class="btn-row">
-          <a class="btn primary" href="https://github.com/mahmoudeisa-Mango/dafa_furniture" target="_blank" rel="noopener">View the code on GitHub</a>
+          <a class="btn primary" href="https://github.com/mahmoudeisa-Mango/dafa-furniture" target="_blank" rel="noopener">View the code on GitHub</a>
         </div>
       </div>
 
